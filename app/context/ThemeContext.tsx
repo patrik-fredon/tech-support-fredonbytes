@@ -1,8 +1,9 @@
 'use client';
 
+import { translations } from '@/app/i18n/translations';
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
-type Language = 'cs' | 'en';
+type Language = keyof typeof translations;
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
@@ -10,6 +11,7 @@ interface ThemeContextType {
   theme: Theme;
   toggleLanguage: () => void;
   toggleTheme: () => void;
+  t: typeof translations[keyof typeof translations];
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -23,8 +25,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const savedLanguage = localStorage.getItem('language') as Language;
     const savedTheme = localStorage.getItem('theme') as Theme;
 
-    if (savedLanguage) setLanguage(savedLanguage);
-    if (savedTheme) setTheme(savedTheme);
+    if (savedLanguage && translations[savedLanguage]) {
+      setLanguage(savedLanguage);
+    }
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
   }, []);
 
   useEffect(() => {
@@ -45,7 +51,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ThemeContext.Provider value={{ language, theme, toggleLanguage, toggleTheme }}>
+    <ThemeContext.Provider value={{
+      language,
+      theme,
+      toggleLanguage,
+      toggleTheme,
+      t: translations[language]
+    }}>
       {children}
     </ThemeContext.Provider>
   );
