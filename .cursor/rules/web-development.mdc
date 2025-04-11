@@ -1,0 +1,90 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Configuration Specification
+
+# Stack Requirements
+
+- TailwindCSS: 3.0.11 (strict)
+- Next.js: 15.x (strict)
+
+# Core Requirements
+- Version Integrity
+
+- Maintain exact specified versions through package-lock.json/yarn.lock
+
+- Document version constraints in README.md installation section
+
+# Codebase Standards
+
+
+- Implement atomic design pattern for component architecture
+- Maintain 100% test coverage for modified components
+- Document all component props with TypeScript interfaces
+- Use JSDoc for complex utilities
+
+# Quality Enforcement
+
+Pre-commit hooks for:
+
+ESLint (Airbnb config extended)
+
+# Prettier formatting
+
+Lighthouse CI (min 90 performance score)
+
+Dynamic import for components > 50kb
+
+# Theming Implementation
+
+// themes/theme-provider.tsx
+export const ThemeContext = createContext({ toggleTheme: () => {} });
+
+export default function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  
+  const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+
+  return (
+    <ThemeContext.Provider value={{ toggleTheme }}>
+      <div className={theme === 'dark' ? 'dark-mode' : 'light-mode'}>
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
+}
+
+
+# Security & Performance
+
+- Content-Security-Policy: nonce-based with NextScript
+- Dynamic imports for all routes
+- Compression via next.config.js brotli config
+- Mobile-first media queries in CSS-in-JS
+
+# API Implementation
+
+// lib/api-endpoints.ts
+/**
+ * @swagger
+ * /api/data:
+ *   get:
+ *     description: Returns optimized payload
+ *     responses:
+ *       200:
+ *         content:
+ *           application/json
+ */
+export async function getOptimizedData(ctx: NextApiContext) {
+  // Implementation logic
+}
+# Maintenance Protocol
+
+- Version-check daily workflow via GitHub Actions
+- Dependency-review action on PRs
+- Changelog.md with breaking change analysis
+- Automated upgrades via Dependabot (version-locked)
+
+
