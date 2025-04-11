@@ -41,6 +41,11 @@ export const translations = {
       invalidEmail: 'Please enter a valid email',
       serverError: 'Server error occurred. Please try again later.',
     },
+    home: {
+      title: 'FredonBytes Tech Support',
+      description:
+        "Need help with one of our projects? Fill out the form below and we'll get back to you as soon as possible.",
+    },
   },
   cs: {
     common: {
@@ -81,6 +86,11 @@ export const translations = {
       required: 'Toto pole je povinné',
       invalidEmail: 'Zadejte platný email',
       serverError: 'Došlo k chybě serveru. Zkuste to prosím později.',
+    },
+    home: {
+      title: 'FredonBytes Technická Podpora',
+      description:
+        'Potřebujete pomoc s některým z našich projektů? Vyplňte formulář níže a my se vám ozveme co nejdříve.',
     },
   },
 } as const;
