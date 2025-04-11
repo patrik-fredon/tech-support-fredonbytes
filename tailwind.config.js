@@ -5,22 +5,20 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        border: 'hsl(var(--border))',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        border: 'var(--border)',
         primary: {
-          DEFAULT: '#2563eb',
-          dark: '#1d4ed8',
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
         },
         secondary: {
-          DEFAULT: '#64748b',
-          dark: '#475569',
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
         },
       },
       fontFamily: {
