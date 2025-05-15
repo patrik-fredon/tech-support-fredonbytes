@@ -1,0 +1,65 @@
+{
+  "common": {
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "support": "Support",
+    "otherProjects": "Other projects",
+    "needHelp": "Need help?"
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "project": "Project",
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "minLength": "Minimum {length} characters required",
+    "maxLength": "Maximum {length} characters allowed"
+  },
+  "support": {
+    "title": "FredonBytes Tech Support",
+    "description": "Fill out the form below to get in touch with our support team.",
+    "success": "Your message has been sent successfully!",
+    "error": "There was an error sending your message. Please try again."
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email",
+    "serverError": "Server error occurred. Please try again later."
+  },
+  "home": {
+    "title": "FredonBytes Tech Support",
+    "description": "Need help with one of our projects? Fill out the form below and we'll get back to you as soon as possible."
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "slogan": "Code. Build. Deploy.",
+    "legalLinks": [
+      {
+        "name": "Privacy Policy",
+        "href": "/legal/privacy-policy"
+      },
+      {
+        "name": "Terms of Service",
+        "href": "/legal/terms-of-service"
+      },
+      {
+        "name": "Cookie Policy",
+        "href": "/legal/cookie-policy"
+      }
+    ]
+  }
+}
