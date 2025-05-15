@@ -1,0 +1,15 @@
+{
+  "slogan": "Kód bez bugů je mýtus. Footer bez stylu? Nikdy! – Kódujeme s úsměvem.",
+  "copyright": "Všechna práva vyhrazena.",
+  "legalLinks": [
+    {
+      "name": "Zásady ochrany osobních údajů",
+      "href": "/cs/privacy-policy"
+    },
+    {
+      "name": "Podmínky služby",
+      "href": "/cs/terms"
+    }
+  ],
+  "jsonLd": "{\"@type\":\"Organization\",\"name\":\"FredonBytes\",\"url\":\"https://fredonbytes.cloud\",\"logo\":\"https://fredonbytes.cloud/logo.png\",\"sameAs\":[\"https://linkedin.com/company/fredonbytes\",\"https://github.com/fredonbytes\"]}"
+}
