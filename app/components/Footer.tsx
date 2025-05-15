@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import cs from "../../../public/locales/footer/cs.json";
-import en from "../../../public/locales/footer/en.json";
+import cs from "../../public/locales/footer/cs.json";
+import en from "../../public/locales/footer/en.json";
 import StructuredData from "./structuredData";
 import theme from "./theme.json";
 
@@ -34,7 +34,6 @@ export default function Footer() {
       className="relative mt-auto border-t-2 border-transparent"
       style={{
         background: theme.background,
-        backgroundImage: theme.backgroundGradient,
         borderImage: `${theme.backgroundGradient} 1`,
         fontFamily: "Fira Mono, Menlo, Monaco, Consolas, monospace",
         boxShadow: theme.shadow,
