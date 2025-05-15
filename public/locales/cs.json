@@ -1,0 +1,65 @@
+{
+  "common": {
+    "language": "Jazyk",
+    "theme": "Téma",
+    "light": "Světlý",
+    "dark": "Tmavý",
+    "submit": "Odeslat",
+    "cancel": "Zrušit",
+    "loading": "Načítání...",
+    "error": "Chyba",
+    "success": "Úspěch"
+  },
+  "navigation": {
+    "home": "Domů",
+    "about": "O nás",
+    "contact": "Kontakt",
+    "support": "Podpora",
+    "otherProjects": "Další projekty",
+    "needHelp": "Potřebujete pomoc?"
+  },
+  "form": {
+    "name": "Jméno",
+    "email": "Email",
+    "subject": "Předmět",
+    "message": "Zpráva",
+    "project": "Projekt",
+    "required": "Povinné pole",
+    "invalidEmail": "Neplatný email",
+    "minLength": "Minimálně {length} znaků",
+    "maxLength": "Maximálně {length} znaků"
+  },
+  "support": {
+    "title": "FredonBytes Technická Podpora",
+    "description": "Vyplňte formulář níže pro kontakt s naším týmem podpory.",
+    "success": "Vaše zpráva byla úspěšně odeslána!",
+    "error": "Při odesílání zprávy došlo k chybě. Zkuste to prosím znovu."
+  },
+  "errors": {
+    "required": "Toto pole je povinné",
+    "invalidEmail": "Zadejte platný email",
+    "serverError": "Došlo k chybě serveru. Zkuste to prosím později."
+  },
+  "home": {
+    "title": "FredonBytes Technická Podpora",
+    "description": "Potřebujete pomoc s některým z našich projektů? Vyplňte formulář níže a my se vám ozveme co nejdříve."
+  },
+  "footer": {
+    "copyright": "Všechna práva vyhrazena.",
+    "slogan": "Code. Build. Deploy.",
+    "legalLinks": [
+      {
+        "name": "Zásady ochrany osobních údajů",
+        "href": "/legal/privacy-policy"
+      },
+      {
+        "name": "Podmínky služby",
+        "href": "/legal/terms-of-service"
+      },
+      {
+        "name": "Zásady používání cookies",
+        "href": "/legal/cookie-policy"
+      }
+    ]
+  }
+}

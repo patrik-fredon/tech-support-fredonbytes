@@ -1,10 +1,12 @@
 'use client';
 
 import { useTheme } from '@/app/context/ThemeContext';
+import { useTranslations } from '@/app/context/TranslationContext';
 import { cn } from '@/lib/utils';
 
 export function ThemeSwitcher() {
-  const { theme, toggleTheme, t } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { translations } = useTranslations();
 
   return (
     <button
@@ -17,19 +19,19 @@ export function ThemeSwitcher() {
         'focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
         'flex items-center gap-2'
       )}
-      aria-label={t.common.theme}
+      aria-label={translations.common.theme}
     >
-      {theme === 'light' ? (
+      {theme === 'dark' ? (
         <>
           <span className="text-lg">🌙</span>
-          <span>{t.common.dark}</span>
+          <span>{translations.common.dark}</span>
         </>
       ) : (
         <>
           <span className="text-lg">☀️</span>
-          <span>{t.common.light}</span>
+          <span>{translations.common.light}</span>
         </>
       )}
     </button>
   );
-} 
+}

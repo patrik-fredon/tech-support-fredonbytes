@@ -1,0 +1,10 @@
+{
+  "background": "#fff",
+  "backgroundGradient": "linear-gradient(90deg,#600823,#161B22 50%,#000 100%)",
+  "accent": "#4B0619",
+  "accentSecondary": "#ff00cc",
+  "text": "#000",
+  "slogan": "#4B0619",
+  "sloganCursor": "#ff00cc",
+  "shadow": "0 0 32px 0 #4B0619"
+}

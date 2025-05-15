@@ -1,0 +1,15 @@
+{
+  "slogan": "404: Footer Not Found? Not with us! – Where code meets innovation.",
+  "copyright": "All rights reserved.",
+  "legalLinks": [
+    {
+      "name": "Privacy Policy",
+      "href": "/privacy-policy"
+    },
+    {
+      "name": "Terms of Service",
+      "href": "/terms"
+    }
+  ],
+  "jsonLd": "{\"@type\":\"Organization\",\"name\":\"FredonBytes\",\"url\":\"https://fredonbytes.cloud\",\"logo\":\"https://fredonbytes.cloud/logo.png\",\"sameAs\":[\"https://linkedin.com/company/fredonbytes\",\"https://github.com/fredonbytes\"]}"
+}
