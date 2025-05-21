@@ -7,19 +7,10 @@ import theme from "./theme.json";
 
 type FooterData = typeof cs;
 
-function getLocale(): "cs" | "en" {
-  if (typeof window !== "undefined") {
-    const cookie = document.cookie.match(/(?:^|; )NEXT_LOCALE=([^;]*)/);
-    if (cookie && (cookie[1] === "en" || cookie[1] === "cs")) return cookie[1] as "cs" | "en";
-    if (navigator.language.startsWith("en")) return "en";
-    return "cs";
-  }
-  // Server fallback
-  return "cs";
-}
+import { useTranslations } from "../context/TranslationContext";
 
 export default function Footer() {
-  const locale = getLocale();
+  const { locale } = useTranslations();
   const data: FooterData = locale === "en" ? en : cs;
 
   let jsonLd = {};

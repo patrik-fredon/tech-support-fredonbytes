@@ -13,18 +13,9 @@ type TranslationContextType = {
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
-function getInitialLocale(): "cs" | "en" {
-  if (typeof window !== "undefined") {
-    const cookie = document.cookie.match(/(?:^|; )NEXT_LOCALE=([^;]*)/);
-    if (cookie && (cookie[1] === "en" || cookie[1] === "cs")) return cookie[1] as "cs" | "en";
-    if (navigator.language.startsWith("en")) return "en";
-    return "cs";
-  }
-  return "cs"; // Server-side fallback
-}
 
-export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<"cs" | "en">(getInitialLocale);
+export function TranslationProvider({ children, locale: initialLocale }: { children: ReactNode; locale: "cs" | "en" }) {
+  const [locale, setLocaleState] = useState<"cs" | "en">(initialLocale);
   const [translations, setTranslations] = useState<Translations>(locale === "en" ? enTranslations : csTranslations);
 
   const setLocale = (newLocale: "cs" | "en") => {

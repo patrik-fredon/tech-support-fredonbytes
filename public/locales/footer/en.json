@@ -4,11 +4,11 @@
   "legalLinks": [
     {
       "name": "Privacy Policy",
-      "href": "/privacy-policy"
+      "href": "/en/privacy-policy"
     },
     {
       "name": "Terms of Service",
-      "href": "/terms"
+      "href": "/en/terms"
     }
   ],
   "jsonLd": "{\"@type\":\"Organization\",\"name\":\"FredonBytes\",\"url\":\"https://fredonbytes.cloud\",\"logo\":\"https://fredonbytes.cloud/logo.png\",\"sameAs\":[\"https://linkedin.com/company/fredonbytes\",\"https://github.com/fredonbytes\"]}"

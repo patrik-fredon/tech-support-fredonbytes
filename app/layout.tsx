@@ -22,13 +22,15 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: "cs" | "en" };
 }>) {
   return (
     <html>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
-        <TranslationProvider>
+        <TranslationProvider locale={params.locale}>
           <ThemeProvider>
             <div className="flex min-h-screen flex-col bg-white dark:bg-gray-900">
               <header className="border-b border-gray-200 dark:border-gray-800">
