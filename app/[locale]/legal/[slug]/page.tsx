@@ -21,25 +21,34 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function LegalPage({ params }: PageProps) {
+export default async function LegalPage({ params }: PageProps) {
+  // Validate the slug and locale parameters
+  console.log("DEBUG: Rendering legal page with params:", params);
+
   const validSlugs = ['privacy-policy', 'terms'];
   const validLocales = ['en', 'cs'];
 
-  if (!params.slug || !validSlugs.includes(params.slug)) {
-    console.error('Invalid or missing slug:', params.slug);
+  // Verify slug
+  if (!params?.slug || !validSlugs.includes(params.slug)) {
+    console.error('Invalid or missing slug:', params?.slug);
     return notFound();
   }
 
-  if (!params.locale || !validLocales.includes(params.locale)) {
-    console.error('Invalid or missing locale:', params.locale);
+  // Verify locale
+  if (!params?.locale || !validLocales.includes(params.locale)) {
+    console.error('Invalid or missing locale:', params?.locale);
     return notFound();
   }
 
-  console.log('Rendering legal page with params:', params);
-  
-  return (
-    <div className="min-h-screen">
-      <LegalDocument slug={params.slug} locale={params.locale} />
-    </div>
-  );
+  try {
+    console.log(`DEBUG: About to render LegalDocument with slug=${params.slug}, locale=${params.locale}`);
+    return (
+      <div className="min-h-screen">
+        <LegalDocument slug={params.slug} locale={params.locale} />
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering legal document:', error);
+    return notFound();
+  }
 }

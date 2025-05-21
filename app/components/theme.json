@@ -1,6 +1,6 @@
 {
   "background": "#000f37",
-  "backgroundGradient": "linear-gradient(90deg,#4B0619,#fff 50%,#4B0619 100%)",
+  "backgroundGradient": "linear-gradient(90deg,#4B0619,#ff00cc 50%,#4B0619 100%)",
   "accent": "#4B0619",
   "accentSecondary": "#ff00cc",
   "text": "#fff",

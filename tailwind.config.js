@@ -15,6 +15,47 @@ module.exports = {
       },
     },
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: 'none',
+            color: theme('colors.gray.900'),
+            '[class~="dark"] &': {
+              color: theme('colors.gray.100'),
+            },
+            h1: {
+              color: theme('colors.gray.900'),
+              '[class~="dark"] &': {
+                color: theme('colors.gray.100'),
+              },
+            },
+            h2: {
+              color: theme('colors.gray.900'),
+              '[class~="dark"] &': {
+                color: theme('colors.gray.100'),
+              },
+            },
+            h3: {
+              color: theme('colors.gray.900'),
+              '[class~="dark"] &': {
+                color: theme('colors.gray.100'),
+              },
+            },
+            strong: {
+              color: theme('colors.gray.900'),
+              '[class~="dark"] &': {
+                color: theme('colors.gray.100'),
+              },
+            },
+            hr: {
+              borderColor: theme('colors.gray.200'),
+              '[class~="dark"] &': {
+                borderColor: theme('colors.gray.700'),
+              },
+            },
+          },
+        },
+      }),
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
