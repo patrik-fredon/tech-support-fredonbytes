@@ -1,0 +1,159 @@
+version: '3.8'
+
+# ===================================
+# FredonBytes Tech Support
+# Coolify-optimized Docker Compose
+# ===================================
+
+services:
+  # ===================================
+  # Next.js Application Service
+  # ===================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+
+    container_name: fredonbytes-tech-support
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Port mapping - Coolify will handle external routing
+    ports:
+      - "${PORT:-3000}:3000"
+
+    # Environment variables with Coolify auto-detection
+    environment:
+      # Node environment
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+
+      # Application URL (Coolify magic variable)
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-https://tech.fredonbytes.eu}
+
+      # MongoDB connection (required)
+      - MONGODB_URI=${MONGODB_URI:?MongoDB connection string is required}
+      - MONGODB_DB=${MONGODB_DB:-tech-support}
+
+      # Email service - Resend API
+      - RESEND_API_KEY=${RESEND_API_KEY:?Resend API key is required}
+      - RESEND_FROM_EMAIL=${RESEND_FROM_EMAIL:-support@fredonbytes.eu}
+      - RESEND_TO_EMAIL=${RESEND_TO_EMAIL:-admin@fredonbytes.eu}
+
+      # Plausible Analytics
+      - NEXT_PUBLIC_PLAUSIBLE_DOMAIN=${NEXT_PUBLIC_PLAUSIBLE_DOMAIN:-tech.fredonbytes.eu}
+      - NEXT_PUBLIC_PLAUSIBLE_HOST=${NEXT_PUBLIC_PLAUSIBLE_HOST:-https://plausible.homelab-fredon.space}
+
+      # Security & Session
+      - SESSION_SECRET=${SESSION_SECRET:-${SERVICE_PASSWORD_SESSION}}
+
+      # Port configuration
+      - PORT=${PORT:-3000}
+      - HOSTNAME=0.0.0.0
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      start_period: 40s
+      retries: 3
+
+    # Coolify labels
+    labels:
+      # Coolify management
+      - "coolify.managed=true"
+
+      # Traefik routing for main domain
+      - "traefik.enable=true"
+
+      # HTTP Router for tech.fredonbytes.eu
+      - "traefik.http.routers.fredonbytes-tech.rule=Host(`tech.fredonbytes.eu`)"
+      - "traefik.http.routers.fredonbytes-tech.entrypoints=https"
+      - "traefik.http.routers.fredonbytes-tech.tls=true"
+      - "traefik.http.routers.fredonbytes-tech.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fredonbytes-tech.service=fredonbytes-tech-service"
+
+      # Service definition
+      - "traefik.http.services.fredonbytes-tech-service.loadbalancer.server.port=3000"
+
+      # Redirect HTTP to HTTPS
+      - "traefik.http.routers.fredonbytes-tech-http.rule=Host(`tech.fredonbytes.eu`)"
+      - "traefik.http.routers.fredonbytes-tech-http.entrypoints=http"
+      - "traefik.http.routers.fredonbytes-tech-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+
+      # 301 Redirects for alternative domains (.com, .cz, .tech, .cloud)
+      # .com domain
+      - "traefik.http.routers.fredonbytes-tech-com.rule=Host(`tech.fredonbytes.com`) || Host(`fredonbytes.com`) || Host(`www.fredonbytes.com`)"
+      - "traefik.http.routers.fredonbytes-tech-com.entrypoints=https"
+      - "traefik.http.routers.fredonbytes-tech-com.tls=true"
+      - "traefik.http.routers.fredonbytes-tech-com.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fredonbytes-tech-com.middlewares=redirect-to-eu"
+
+      # .cz domain
+      - "traefik.http.routers.fredonbytes-tech-cz.rule=Host(`tech.fredonbytes.cz`) || Host(`fredonbytes.cz`) || Host(`www.fredonbytes.cz`)"
+      - "traefik.http.routers.fredonbytes-tech-cz.entrypoints=https"
+      - "traefik.http.routers.fredonbytes-tech-cz.tls=true"
+      - "traefik.http.routers.fredonbytes-tech-cz.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fredonbytes-tech-cz.middlewares=redirect-to-eu"
+
+      # .tech domain
+      - "traefik.http.routers.fredonbytes-tech-domain.rule=Host(`fredonbytes.tech`) || Host(`www.fredonbytes.tech`)"
+      - "traefik.http.routers.fredonbytes-tech-domain.entrypoints=https"
+      - "traefik.http.routers.fredonbytes-tech-domain.tls=true"
+      - "traefik.http.routers.fredonbytes-tech-domain.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fredonbytes-tech-domain.middlewares=redirect-to-eu"
+
+      # .cloud domain
+      - "traefik.http.routers.fredonbytes-tech-cloud.rule=Host(`tech.fredonbytes.cloud`) || Host(`fredonbytes.cloud`) || Host(`www.fredonbytes.cloud`)"
+      - "traefik.http.routers.fredonbytes-tech-cloud.entrypoints=https"
+      - "traefik.http.routers.fredonbytes-tech-cloud.tls=true"
+      - "traefik.http.routers.fredonbytes-tech-cloud.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.fredonbytes-tech-cloud.middlewares=redirect-to-eu"
+
+      # Redirect middleware - 301 permanent redirect to .eu
+      - "traefik.http.middlewares.redirect-to-eu.redirectregex.regex=^https?://(?:tech\\.)?(?:www\\.)?fredonbytes\\.(?:com|cz|tech|cloud)(.*)"
+      - "traefik.http.middlewares.redirect-to-eu.redirectregex.replacement=https://tech.fredonbytes.eu$${1}"
+      - "traefik.http.middlewares.redirect-to-eu.redirectregex.permanent=true"
+
+      # Security headers middleware
+      - "traefik.http.middlewares.security-headers.headers.customResponseHeaders.X-Content-Type-Options=nosniff"
+      - "traefik.http.middlewares.security-headers.headers.customResponseHeaders.X-Frame-Options=SAMEORIGIN"
+      - "traefik.http.middlewares.security-headers.headers.customResponseHeaders.X-XSS-Protection=1; mode=block"
+      - "traefik.http.middlewares.security-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.security-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.security-headers.headers.stsPreload=true"
+
+      # Apply security headers to main router
+      - "traefik.http.routers.fredonbytes-tech.middlewares=security-headers"
+
+    # Networks
+    networks:
+      - fredonbytes-network
+
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# ===================================
+# Networks
+# ===================================
+networks:
+  fredonbytes-network:
+    driver: bridge
+    name: fredonbytes-tech-network
+
+# ===================================
+# Volumes (if needed for persistence)
+# ===================================
+volumes:
+  app-cache:
+    driver: local
