@@ -6,6 +6,9 @@ const nextConfig = {
   swcMinify: true,
   poweredByHeader: false,
 
+  // Docker deployment - standalone output
+  output: 'standalone',
+
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],

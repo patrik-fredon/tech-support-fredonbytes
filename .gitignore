@@ -16,4 +16,8 @@ package-lock.json
 .DS_Store
 next-env.d.ts
 
+# TypeScript build cache
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 
